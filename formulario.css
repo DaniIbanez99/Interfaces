@@ -1,4 +1,6 @@
-
+body{
+    background-image: url(./fondo_bebop.jpg);
+}
 #titulo{
     text-align: center;
     margin-top: 250px;
@@ -20,4 +22,29 @@
 #correo{
     margin-left: 24px;
     margin-top: 5px;
+}
+#telefono{
+    margin-left: -4px;
+    margin-top: 5px;
+}
+#dni{
+    margin-left: 40px;
+    margin-top: 5px;
+}
+#formulario2{
+    background-image: url(./registro.jpg);
+    width: 350px;
+    height: 200px;
+    margin-left: 800px;
+    margin-top: 320px;
+}
+#pie{
+    background-color: black;
+    height: 50px;
+    margin-top: 380px;
+}
+#enlace{
+    background-color: rgb(17, 16, 16);
+    font-weight: bold;
+    
 }
