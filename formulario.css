@@ -34,17 +34,28 @@ body{
 #formulario2{
     background-image: url(./registro.jpg);
     width: 350px;
-    height: 200px;
+    height: 220px;
     margin-left: 800px;
     margin-top: 320px;
 }
 #pie{
-    background-color: black;
-    height: 50px;
+    position: absolute;
+    background-color: rgb(194,196,201);
+    height: 300px;
+    bottom: 0px;
     margin-top: 380px;
+    width: 1920px;
+    height: 110px;
+    margin-left: -8px;
+}
+#boton{
+    margin-left: 80px;
 }
 #enlace{
-    background-color: rgb(17, 16, 16);
-    font-weight: bold;
-    
+    position: absolute;
+    padding: 10px;
+    margin-left: 900px;
+    margin-top: 30px;
+    width: 200px;
+    height: 50px;  
 }
