@@ -1,17 +1,23 @@
 body, html{    
-    background: linear-gradient(to bottom, red,black);
-    height: 100%;
+    background-image: url(./akatsuki.gif);
 }
-h1{
-    margin-left: 900px;
+#titulo{
+
+    margin-left: 47%;
     background-color: aliceblue;
     background-repeat: no-repeat;
-    width: 150px;
+    width: 300px;
+    text-align: center;
 }
 #imagenes{
+    background-color:   black;
+    width: 80%;
+    height: 700px;
+    margin-left: 12%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 5rem;
 }
 /*Imagen1*/
 #cont1{
@@ -19,16 +25,28 @@ h1{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: white;
-    width: 300px;
-    height: 300px;
+    background-color: rgb(95,111,145);
     box-sizing: border-box;
+    height: 400px;
+    width: 250px;
     border-radius: 2%;
-    margin-top: 150px;
+    margin-top: 7%;
     margin-left: 5%;
 }
 #imagen1{
-    margin-top: 30px;
+    margin-top: 15%;
+    width: 70%;
+    height: 200px;
+}
+#p1{
+    margin-top: 13%;
+}
+/*Boton1*/
+#zetsu{
+    position: relative;
+    margin-top: 15%;
+    height: 50px;
+    width: 35%;
 }
 /*Imagen2*/
 #cont2{
@@ -36,17 +54,29 @@ h1{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: white;
-    width: 300px;
-    height: 300px;
+    background-color: rgb(95,111,145);
+    width: 250px;
+    height: 400px;
     box-sizing: border-box;
     border-radius: 2%;
-    margin-top: 150px;
-    margin-left: 50px;
+    margin-top: 7%;
+    margin-left: 2%;
 }
 #imagen2{
-    margin-top: 30px;
-    margin-left: 40px;
+    margin-top: 15%;
+    width: 70%;
+    height: 200px;
+}
+#p2{
+    margin-top: 15%;
+}
+/*Boton2*/
+#hidan{
+    position: relative;
+    margin-top: 15%;
+    height: 50px;
+    width: 35%;
+
 }
 /*Imagen3*/
 #cont3{
@@ -54,17 +84,29 @@ h1{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: white;
-    width: 300px;
-    height: 300px;
+    background-color: rgb(95,111,145);
+    width: 250px;
+    height: 400px;
     box-sizing: border-box;
     border-radius: 2%;
-    margin-top: 150px;
-    margin-left: 50px;
+    margin-top: 7%;
+    margin-left: 2%;
 }
 #imagen3{
-    margin-top: 30px;
-    margin-left: 70px;
+    margin-top: 15%;
+    width: 70%;
+    height: 200px;
+    
+}
+#p3{
+    margin-top: 15%;
+}
+/*Boton3*/
+#itachi{
+    position: relative;
+    margin-top: 15%;
+    height: 50px;
+    width: 35%;
 }
 /*Imagen4*/
 #cont4{
@@ -72,14 +114,39 @@ h1{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: white;
-    width: 300px;
-    height: 300px;
+    background-color: rgb(95,111,145);
+    width: 250px;
+    height: 400px;
     box-sizing: border-box;
     border-radius: 2%;
-    margin-top: 150px;
-    margin-right: 150px;
+    margin-top: 7%;
+    margin-right: 10%;
 }
 #imagen4{
-    margin-top: 30px;
+    margin-top: 15%;
+    width: 70%;
+    height: 200px;
+}
+#p4{
+    margin-top: 15%;
+}
+/*Boton4*/
+#kisame{
+    position: relative;
+    margin-top: 15%;
+    height: 50px;
+    width: 35%;
+}
+/*footer*/
+#enlace{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    margin-top: 10%;
+    background-color: aliceblue;
+}
+#enl{
+    margin-top: 0.5%;
 }
