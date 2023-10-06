@@ -139,7 +139,8 @@ body, html{
 }
 /*footer*/
 #enlace{
-    display: flex;
+    position: absolute;
+    bottom: 0;
     justify-content: space-around;
     text-align: center;
     width: 100%;
