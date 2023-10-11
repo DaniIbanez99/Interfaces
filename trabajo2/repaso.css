@@ -137,6 +137,9 @@ body, html{
     height: 50px;
     width: 35%;
 }
+#adios{
+    height: 260px;
+}
 /*footer*/
 #enlace{
     position: absolute;
