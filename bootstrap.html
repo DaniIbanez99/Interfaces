@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Bootstrap.min.css">
+    <title>Bootstrap</title>
+    <style>
+        .row{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <!--Ejemplo 1-->
+    <div class="container-fluid bg-primary"> <!--Ocupa todo el espacio-->
+        <div class="container"> <!--Crea márgenes a los lados-->
+            <p>Javi no nos amplía la entrega</p>
+            <p>Maldita sea.</p>
+        </div>
+    </div> 
+    <!--Ejemplo 2-->
+    <div class="row"><!--Para hacer tablas -->
+        <div class="col-4 bg-primary">
+            <p>Hola</p>
+        </div>
+        <div class="col-4 bg-sucess">
+            <p class="lead">Hola</p><!--Cambia el estilo de letra-->
+        </div>
+        <div class="col-4 bg-primary">
+            <p>Hola</p>
+        </div> 
+        <div class="col-6 bg-primary">
+            <p>Adios</p>
+        </div>
+        <div class="col-6 bg-sucess">
+            <p>Adios</p>
+        </div>
+    </div>
+</body>
+</html>
