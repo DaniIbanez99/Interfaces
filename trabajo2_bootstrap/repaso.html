@@ -6,39 +6,48 @@
     <link rel="stylesheet" href="css/Bootstrap.min.css">
     <title>Akatsuki</title>
 </head>
-<body>
+<body style="background-image: url(./akatsuki.gif);">
     <div>
-        <header>
-            <h1>Akatsuki</h1>
+            <h1 class="mt-5"></h1>
+        <header class="row">
+            <h1 class="col-3"></h1>
+            <h1 class="col-3 text-center mt-3 bg-success w-50">Akatsuki</h1>
         </header>
     </div>
-    <div>
-        <div>
-            <img src="./figura1.jpg">
-            <p>Zetsu unos de los más importantes en aktsuki</p>
+    <h1 class="mt-5"></h1>
+    <div class=" row w-100 h-100 text-center">
+        <div class="col-2"></div>
+        <div class="col-2 mt-5 bg-primary bg-secondary">
+            <img class="mt-2" src="./figura1.jpg" width="200" height="200">
+            <p class=" mt-2">Zetsu </p>
             <button onclick="boton1()">20´00 €</button>
         </div>
-        <div>
-            <img src="./figura2.jpg">
-            <p>Hidan el Inmortal</p>
+        <div class="col-2 mt-5 bg-primary bg-secondary">
+            <img class="mt-2" src="./figura2.jpg"  width="200" height="200">
+            <p class="  mt-2">Hidan el Inmortal</p>
             <button onclick="boton2()">35´00 €</button>
         </div>
-        <div>
-            <img src="./figura3.jpg">
-            <p>itachi el que asesinó a todo su clan</p>
+        <div class=" col-2 mt-5 bg-primary bg-secondary">
+            <img class="mt-2" src="./figura3.jpg"  width="200" height="200">
+            <p class=" mt-2">itachi el que asesinó a todo su clan</p>
             <button onclick="boton3()">80´00 €</button>
         </div>
-        <div>
-            <img  src="./figura4.jpg">
-            <p>Kisame compañero de Itachi y uno de los 7 espadachines</p>
+        <div class=" col-2 mt-5 bg-primary bg-secondary">
+            <img class="mt-2" src="./figura4.jpg"  width="200" height="200">
+            <p class=" mt-2">Kisame uno de los 7 espadachines</p>
             <button onclick="boton4()">100´00 €</button>
         </div>
-        <div></div>
-    </div>
-    <footer>
-        <div>
-            <a href="https://naruto.fandom.com/es/wiki/Akatsuki">Información</a>
+        <div class="container mt-5">
+            <div class="mt-5"></div>
         </div>
-    </footer>
+        
+        
+        <footer class="bg-dark text-light mt-5 fixed-bottom">
+            <div class="container">
+                <div class=" mt-5 text-center">
+                    <a class="text-light mb-5" href="https://naruto.fandom.com/es/wiki/Akatsuki">Información</a>
+                </div>
+            </div>
+        </footer>
 </body>  
 </html>
