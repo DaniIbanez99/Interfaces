@@ -4,50 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/Bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="repaso.css">
     <title>Akatsuki</title>
 </head>
 <body style="background-image: url(./akatsuki.gif);">
-    <div>
-            <h1 class="mt-5"></h1>
-        <header class="row">
-            <h1 class="col-3"></h1>
-            <h1 class="col-3 text-center mt-3 bg-success w-50">Akatsuki</h1>
-        </header>
-    </div>
-    <h1 class="mt-5"></h1>
-    <div class=" row w-100 h-100 text-center">
-        <div class="col-2"></div>
-        <div class="col-2 mt-5 bg-primary bg-secondary">
-            <img class="mt-2" src="./figura1.jpg" width="200" height="200">
-            <p class=" mt-2">Zetsu </p>
-            <button onclick="boton1()">20´00 €</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="mt-5 bg-primary bg-secundary">Akatsuki</h1>
+            </div>
         </div>
-        <div class="col-2 mt-5 bg-primary bg-secondary">
-            <img class="mt-2" src="./figura2.jpg"  width="200" height="200">
-            <p class="  mt-2">Hidan el Inmortal</p>
-            <button onclick="boton2()">35´00 €</button>
-        </div>
-        <div class=" col-2 mt-5 bg-primary bg-secondary">
-            <img class="mt-2" src="./figura3.jpg"  width="200" height="200">
-            <p class=" mt-2">itachi el que asesinó a todo su clan</p>
-            <button onclick="boton3()">80´00 €</button>
-        </div>
-        <div class=" col-2 mt-5 bg-primary bg-secondary">
-            <img class="mt-2" src="./figura4.jpg"  width="200" height="200">
-            <p class=" mt-2">Kisame uno de los 7 espadachines</p>
-            <button onclick="boton4()">100´00 €</button>
-        </div>
-        <div class="container mt-5">
-            <div class="mt-5"></div>
-        </div>
-        
-        
-        <footer class="bg-dark text-light mt-5 fixed-bottom">
-            <div class="container">
-                <div class=" mt-5 text-center">
-                    <a class="text-light mb-5" href="https://naruto.fandom.com/es/wiki/Akatsuki">Información</a>
+
+        <div class="row mt-5">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center">
+                    <img src="./figura1.jpg" class="card-img-top" alt="Zetsu">
+                    <div class="card-body">
+                        <p class="card-text">Zetsu</p>
+                        <button class="btn btn-primary">20.00 €</button>
+                    </div>
                 </div>
             </div>
-        </footer>
-</body>  
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center">
+                    <img src="./figura2.jpg" class="card-img-top" alt="Hidan">
+                    <div class="card-body">
+                        <p class="card-text">Hidan el Inmortal</p>
+                        <button class="btn btn-primary">35.00 €</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center">
+                    <img src="./figura3.jpg" class="card-img-top" alt="Itachi">
+                    <div class="card-body">
+                        <p class="card-text">Itachi el que asesinó a todo su clan</p>
+                        <button class="btn btn-primary">80.00 €</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card text-center">
+                    <img src="./figura4.jpg" class="card-img-top" alt="Kisame">
+                    <div class="card-body">
+                        <p class="card-text">Kisame</p>
+                        <button class="btn btn-primary">100.00 €</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    <footer class="bg-prymary bg-secundary text-center py-2 fixed-bottom" style="background-color: #f3bddc;">
+        <a href="https://naruto.fandom.com/es/wiki/Akatsuki">Informacion</a>
+    </footer>
+</body>
 </html>
