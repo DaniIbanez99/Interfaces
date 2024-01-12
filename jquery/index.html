@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>JQuery</title>
+</head>
+<body>
+
+    <div id="resultado"></div>
+
+
+    <button id="borrar">Borrar</button>
+    
+    <label for="introduccion">Introduce la información que quieras:</label>
+    <input type="text" id="introduccion">
+    <button id="boton1">Mostrar información</button>
+    <button id="h1">Añadir titulo H1</button>
+
+    <script>
+        $(document).ready(function(){// Este código se ejecutará después de que el documento HTML esté completamente cargado
+            $("#boton1").click(function(){// Código que se ejecutará cuando #miBoton sea clicado
+                var informacion = $("#introduccion").val();
+                if (informacion.trim() !== "") {
+                    // Solo agrega al div si la información no está vacía
+                    $("#resultado").append("<p>" + informacion + "</p>");
+                    $("#introduccion").val("");  // Borra el contenido del input
+                }
+            });
+            $("#borrar").click(function(){
+                $("#resultado").empty();
+            });
+        });
+    </script>
+</body>
+</html>
