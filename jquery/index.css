@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
     display: flex;
@@ -15,7 +14,7 @@ body {
     border: 1px solid #ddd;
     padding: 40px;
     margin-top: 20px;
-    max-width: 400px;
+    max-width: 25%;
     width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -52,4 +51,9 @@ button:hover {
 
 #borrar:hover {
     background-color: #d32f2f;
+}
+
+.modOscuro{
+    background-color: rgb(194, 244, 248);
+    color: rgb(14, 12, 12);
 }

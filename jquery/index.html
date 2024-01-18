@@ -6,6 +6,67 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="index.css">
     <title>JQuery</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+#resultado {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 40px;
+    margin-top: 20px;
+    max-width: 25%;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    width: 25%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#borrar {
+    margin-top: 10px;
+    background-color: #f44336;
+}
+
+#borrar:hover {
+    background-color: #d32f2f;
+}
+
+.modOscuro{
+    background-color: rgb(194, 244, 248);
+    color: rgb(14, 12, 12);
+}
+    </style>
 </head>
 <body>
 
@@ -18,6 +79,16 @@
     <input type="text" id="introduccion"> 
     <button id="h1">Añadir titulo H1</button>
     <button id="cambiarH1" style="display: none;">Cambiar titulo h1</button>
+    <button id="h2">añadir titulo h2</button>
+    <button id="h3">añadir titulo h3</button>
+    <button id="p">añadir un párrafo</button>
+    <button id="imagen">añadir imagen</button>
+    <button id="fuente">cambiar fuente</button>
+    <button id="color">cambiar color</button>
+    <button id="colorLetra">cambiar color de letra</button>
+    <button id="deshacer">Elimina el ultimo elemento</button>
+    <button id="modOscuro" class="modOscuro">modo Oscuro</button>
+    <button id="BorrarImagen">Quitar imagen</button>
 
     <script>
         $(document).ready(function(){// Este código se ejecutará después de que el documento HTML esté completamente cargado
@@ -28,11 +99,11 @@
 
             $("#h1").click(function(){
                 var texto = $("#introduccion").val();
-                $("#resultado").html("<h1>" + texto + "</h1>");
+                $("#resultado").append("<h1>" + texto + "</h1>");
                 $("#introduccion").val("");
                 $("#h1").hide();
                 $("#cambiarH1").show();
-             })
+             });
 
              $("#cambiarH1").click(function(){
                 var nuevoTitulo = $("#introduccion").val();
@@ -41,9 +112,87 @@
                     h1existente.text(nuevoTitulo);
                     $("#introduccion").val("");
                 }
-            })
+            });
 
-            })
+            $("#h2").click(function(){
+                var texto = $("#introduccion").val();
+                $("#resultado").append("<h2>" + texto + "</h2>");
+                $("#introduccion").val("");
+                $("#h2").hide();
+             });
+
+             $("#h3").click(function(){
+                var texto = $("#introduccion").val();
+                $("#resultado").append("<h3>" + texto + "</h3>");
+                $("#introduccion").val("");
+                $("#h3").hide();
+             });
+
+             $("#p").click(function(){
+                var texto = $("#introduccion").val();
+                $("#resultado").append("<p>" + texto + "</p>");
+                $("#introduccion").val("");
+                $("#p").hide();
+             });
+
+             $("#imagen").click(function(){
+                var rutaImagen = $("#introduccion").val();
+                $("#resultado").append("<img src='"+ rutaImagen + "' alta='Mi imagen'> ");
+                $("#introduccion").val("");
+             });
+
+             $("#fuente").click(function(){
+                var fuentee = $("#introduccion").val();
+               
+                $("#resultado").css("font-family", fuentee);
+                $("#introduccion").val("");
+                $("#fuente").val("");
+             });
+
+             $("#color").click(function(){
+                var colorr = $("#introduccion").val();
+               
+                $("#resultado").css("background-color", colorr);
+                $("#introduccion").val("");
+                $("#color").val("");
+             });
+
+             $("#colorLetra").click(function(){
+                var colorL = $("#introduccion").val();
+               
+                $("#resultado").css("color", colorL);
+                $("#introduccion").val("");
+                $("#colorLetra").val("");
+             });
+
+             $("#deshacer").click(function(){
+               
+                $("#resultado :last").remove();
+                $("#introduccion").val("");
+             });
+
+             var OscuroActivado = false;
+
+            $("#modOscuro").click(function(){
+                $("html").toggleClass("modOscuro");
+            });
+
+           
+
+            $("#colorLetra").click(function(){
+                var colorL = $("#introduccion").val();
+                $("#resultado").css("color", colorL);
+                $("#introduccion").val("");
+            });
+            
+            $("#BorrarImagen").click(function(){
+                $("#resultado img").fadeOut(500);
+            });
+          
+             });
+
+
+        
     </script>
 </body>
 </html>
