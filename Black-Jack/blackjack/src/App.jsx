@@ -1,143 +1,196 @@
-import { useState, useEffect  } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
+const palos = ['♠', '♦', '♣', '♥'];
+const cartas = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
-const palos = ['♠', '♣', '♦', '♥'];
-const valores = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const Barajar = () => {
+  const mazo = [];
 
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 13; j++) {
+      mazo.push(cartas[j] + palos[i]);
+    }
+  }
 
-const BlackjackTable = ({cartasCrupier}) => {
-  return (
-    <div className="blackjack-table">
-      <div className="row">
-        <PlayerRow playerName="Crupier" cartas={cartasCrupier} />
-      </div>
-      <div className="row">
-        <PlayerRow playerName="Jugador" cartas={cartasJugador} />
-      </div>
-    </div>
-  );
+  for (let i = mazo.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [mazo[i], mazo[j]] = [mazo[j], mazo[i]];
+  }
+
+  return mazo;
 };
 
-const PlayerRow = ({ playerName, cartas }) => {
-  return (
-    <div className="player-row">
-      <h2>{playerName}</h2>
-      <div className='hand'>
-        {cartas.map((carta, index) => (
-          <Card key={index} palo={carta.palo} valor={carta.valor} />
-        ))}
-      </div>
-      <p>Cartas en mano: {cartas.map(carta => carta.valor + carta.palo).join(", ")}</p>
-    </div>
-  );
+const calcular = (hand) => {
+  let score = hand.reduce((acc, carta) => {
+    const valor = carta.slice(0, -1); 
+    if (valor === 'J' || valor === 'Q' || valor === 'K') {
+      return acc + 10;
+    } else if (valor === 'A') {
+      return acc + 11;
+    } else {
+      return acc + parseInt(valor, 10);
+    }
+  }, 0);
+
+  hand.filter((carta) => carta.includes('A')).forEach(() => {
+    if (score > 21) {
+      score -= 10;
+    }
+  });
+
+  return score;
 };
 
-const Card = ({ palo, valor }) => {
+const Carta = ({ carta }) => {
+  const valorCarta = carta.slice(0, -1);
+  const paloCarta = carta.slice(-1);
   return (
-    <div className="card">
-      <span className="card-value">{valor}</span>
-      <span className="card-suit">{palo}</span>
+    <div className="carta">
+      <div className="valor-carta">{valorCarta}</div>
+      <div className="palo-carta">{paloCarta}</div>
     </div>
   );
 };
 
 const App = () => {
+  const [deck, setDeck] = useState(Barajar());
+  const [Jugador, setJugador] = useState([]);
+  const [crupier, setDealerHand] = useState([]);
+  const [playerScore, setPlayerScore] = useState(0);
+  const [CrupierScore, setCrupierScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
-  const [cartasJugador, setCartasJugador] = useState([]);
-  const [cartasCrupier, setCartasCrupier] = useState([]);
-  const [sumaJugador, setSumaJugador] = useState(0);
-  const [sumaCrupier, setSumaCrupier] = useState(0);
-  const [rondaTerminada, setRondaTerminada] = useState(false);
-  const [cartasUtilizadas, setCartasUtilizadas] = useState([]);
-  
+  const repartir = () => {
+    const nuevoMazo = Barajar();
+    setDeck(nuevoMazo);
+    setJugador([nuevoMazo.pop()]);
+    setDealerHand([nuevoMazo.pop(), nuevoMazo.pop()]);
+    setGameOver(false);
+  };
 
-  const solicitarSiguienteCarta = (jugador) => {
-    const valorAleatorio = Math.floor(Math.random() * valores.length);
-    const paloAleatorio = Math.floor(Math.random() * palos.length);
-    const nuevaCarta = {
-      valor: valores[valorAleatorio],
-      palo: palos[paloAleatorio]
-    };
-    if (jugador === "jugador") {
-      setCartasJugador([...cartasJugador, nuevaCarta]);
-    } else if (jugador === "crupier") {
-      setCartasCrupier([...cartasCrupier, nuevaCarta]);
+  const pedirCarta = () => {
+    const nuevoMazo = [...deck];
+    const nuevaManoJugador = [...Jugador, nuevoMazo.pop()];
+    setDeck(nuevoMazo);
+    setJugador(nuevaManoJugador);
+    const nuevaPuntuacion = calcular(nuevaManoJugador);
+    setPlayerScore(nuevaPuntuacion);
+
+    if (nuevaPuntuacion > 21) {
+      setGameOver(true);
+      setTimeout(() => {
+        alert("Te has pasado, el crupier gana.");
+      }, 1000);
     }
   };
-  
+
   const plantarse = () => {
-    while (sumaCartas(cartasCrupier) < 17) {
-      solicitarSiguienteCarta(setCartasCrupier);
+    let nuevoMazo = [...deck];
+    let nuevaManoDealer = [...crupier];
+
+    while (calcular(nuevaManoDealer) < 17) {
+      nuevaManoDealer.push(nuevoMazo.pop());
+    }
+
+    setDeck(nuevoMazo);
+    setDealerHand(nuevaManoDealer);
+    const puntuacionDealerFinal = calcular(nuevaManoDealer);
+    setCrupierScore(puntuacionDealerFinal);
+    setGameOver(true);
+
+    const puntuacionJugadorFinal = playerScore;
+
+    setTimeout(() => {
+      if (puntuacionDealerFinal > 21 || puntuacionJugadorFinal > puntuacionDealerFinal && puntuacionJugadorFinal <= 21) {
+        alert("¡El jugador gana!");
+      } else if (puntuacionDealerFinal === puntuacionJugadorFinal) {
+        alert("¡Es un empate!");
+      } else {
+        alert("¡El crupiers gana!");
+      }
+    }, 1000); 
+
+    if (puntuacionDealerFinal > 21) {
+      setGameOver(true);
+      setTimeout(() => {
+        alert("Te has pasado, el crupier gana.");
+      }, 1000);
     }
   };
 
-  const sumaCartas = (cartas) => {
-    return cartas.reduce((suma, carta) => {
-      const valorCarta = parseInt(carta.valor) || (carta.valor === 'A' ? 11 : 10);
-      return suma + valorCarta;
-    }, 0);
-  };
-  const iniciarNuevaRonda = () => {
-    setRondaTerminada(false); 
-    setSumaJugador(0);
-    setSumaCrupier(0); 
-    setCartasJugador([]); 
-    setCartasCrupier([]);
-  };
-  const terminarRonda = () => {
-    setRondaTerminada(true);
-    setSumaJugador(0); 
-    setSumaCrupier(0); 
+  const pedircartaCrupier = () => {
+    if (!gameOver) {
+      const nuevoMazo = [...deck];
+      const nuevaManoDealer = [...crupier, nuevoMazo.pop()];
+      setDeck(nuevoMazo);
+      setDealerHand(nuevaManoDealer);
+      const nuevaPuntuacion = calcular(nuevaManoDealer);
+      setCrupierScore(nuevaPuntuacion);
+
+      if (nuevaPuntuacion > 21) {
+        setGameOver(true);
+        setTimeout(() => {
+          alert("Te has pasado, gana el jugador.");
+        }, 1000);
+      }
+    }
   };
 
   useEffect(() => {
-    // Calcula la suma de las cartas del jugador
-    const sumaJugadorCalculada = calcularSumaCartas(cartasJugador);
-    setSumaJugador(sumaJugadorCalculada);
-  }, [cartasJugador]);
+    const mazoInicial = Barajar();
+    setDeck(mazoInicial);
+    repartir();
+  }, []);
 
   useEffect(() => {
-    // Calcula la suma de las cartas del crupier
-    const sumaCrupierCalculada = calcularSumaCartas(cartasCrupier);
-    setSumaCrupier(sumaCrupierCalculada);
-  }, [cartasCrupier]);
+    const puntuacionInicialJugador = calcular(Jugador);
+    setPlayerScore(puntuacionInicialJugador);
 
-  // Función para calcular la suma de las cartas
-  const calcularSumaCartas = (cartas) => {
-    let suma = 0;
-    cartas.forEach(carta => {
-      const valorCarta = parseInt(carta.valor) || (carta.valor === 'A' ? 11 : 10);
-      suma += valorCarta;
-    });
-    return suma;
-  };
+    if (puntuacionInicialJugador === 21) {
+      plantarse();
+    }
+  }, [Jugador]);
 
-  const cartaYaUtilizada = (carta) => {
-    return cartasUtilizadas.some((c) => c.valor === carta.valor && c.palo === carta.palo);
-  };
- 
- 
+  useEffect(() => {
+    if (gameOver) {
+      const puntuacionDealerFinal = calcular(crupier);
+      setCrupierScore(puntuacionDealerFinal);
+    }
+  }, [gameOver]);
+
   return (
-    <div>
-      <BlackjackTable />
-      <div>
-        <p>Suma de las cartas del Jugador: {sumaJugador}</p>
-        <p>Suma de las cartas del Crupier: {sumaCrupier}</p>      
+    <div id='mesa'>
+      <h1>Blackjack</h1>
+      <div className="seccion-jugador">
+        <h2>Jugador</h2>
+        <p>Puntuación: {playerScore}</p>
+        <div className="mano">
+          {Jugador.map((carta, index) => (
+            <Carta key={index} carta={carta} />
+          ))}
+        </div>
+        {!gameOver && (
+          <div>
+            <button onClick={pedirCarta}>Pedir</button>
+            <button onClick={plantarse}>Plantarse</button>
+          </div>
+        )}
       </div>
-      {rondaTerminada && (
-        <button onClick={iniciarNuevaRonda}>Nueva Ronda</button>
-      )}
-      <button onClick={terminarRonda}>Terminar Ronda</button>
-      <button onClick={ () => solicitarSiguienteCarta("jugador")}>Solicitar siguiente carta</button>
-      <button onClick={() => solicitarSiguienteCarta("crupier")}>Solicitar siguiente carta Crupier</button>
-      <button onClick={plantarse}>Plantarse</button>
-      <BlackjackTable cartasJugador={cartasJugador} cartasCrupier={cartasCrupier} />
-
+      <div className="seccion-dealer">
+        <h2>Crupier</h2>
+        <p>Puntuación: {gameOver ? CrupierScore : crupier[0] ? calcular([crupier[0]]) : '?'}</p>
+        <div className="mano">
+          {gameOver
+            ? crupier.map((carta, index) => <Carta key={index} carta={carta} />)
+            : crupier.map((carta, index) => (index === 0 ? <Carta key={index} carta={carta} /> : <div key={index} className="carta dorso"></div>))}
+        </div>
+        {!gameOver && (
+          <button onClick={pedircartaCrupier}>Pedir carta al Crupier</button>
+        )}
+      </div>
+      <button onClick={repartir}>Nueva Ronda</button>
     </div>
-   
   );
 };
 
